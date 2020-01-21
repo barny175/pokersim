@@ -1,5 +1,5 @@
 package cz.barny.pokersim.engine
 
-class Dealer {
+interface Result {
 
 }
