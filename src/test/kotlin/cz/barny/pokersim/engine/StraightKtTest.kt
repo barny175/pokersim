@@ -47,7 +47,7 @@ internal class StraightKtTest {
         val communityCards: CommunityCards = CommunityCards(listOf(
             Card(Rank.SEVEN, Suit.Spade),
             Card(Rank.TEN, Suit.Club),
-            Card(Rank.EIGHT, Suit.Diamond),
+            Card(Rank.QUEEN, Suit.Club),
             Card(Rank.FIVE, Suit.Club),
             Card(Rank.QUEEN, Suit.Diamond)
         ))

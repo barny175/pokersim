@@ -11,10 +11,8 @@ fun isStraight(hand: Hand, communityCards: CommunityCards): Straight? {
     allCards.addAll(communityCards.cards)
     allCards.add(hand.card1)
     allCards.add(hand.card2)
-    val cards = allCards.stream()
-        .flatMap { c -> c.rank.values().stream() }
+    val cards = allCards.flatMap { c -> c.rank.values() }
         .sorted()
-        .collect(Collectors.toList())
 
     for (i in cards.size downTo 5) {
         if (cards[i - 1] - cards[i - 1 - 4] == 4) {
