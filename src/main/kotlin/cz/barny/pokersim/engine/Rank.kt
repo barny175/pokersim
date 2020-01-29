@@ -29,4 +29,6 @@ enum class Rank {
     fun values(): List<Int> {
         return values
     }
+
+    fun highestValue(): Int = values.max()!!
 }

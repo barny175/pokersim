@@ -1,5 +1,6 @@
 package cz.barny.pokersim.engine
 
+import cz.barny.pokersim.engine.hands.isStraight
 import org.assertj.core.api.Assertions.assertThat
 
 internal class StraightKtTest {
@@ -18,9 +19,8 @@ internal class StraightKtTest {
 
         val result = isStraight(hand, communityCards)
         assertThat(result)
-            .isInstanceOf(Straight::class.java)
-            .extracting("highestCard")
-            .isEqualTo(Rank.FIVE.values()[0])
+            .extracting({ c -> c!!.getHighestCard() })
+            .isEqualTo(Rank.FIVE)
     }
 
     @org.junit.jupiter.api.Test
@@ -37,9 +37,8 @@ internal class StraightKtTest {
 
         val result = isStraight(hand, communityCards)
         assertThat(result)
-            .isInstanceOf(Straight::class.java)
-            .extracting("highestCard")
-            .isEqualTo(Rank.ACE.values()[1])
+            .extracting({ c -> c!!.getHighestCard() })
+            .isEqualTo(Rank.ACE)
     }
 
     @org.junit.jupiter.api.Test
