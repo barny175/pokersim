@@ -12,7 +12,7 @@ fun isStraightFlush(hand: Hand, communityCards: CommunityCards): StraightFlush? 
         .collect(Collectors.groupingBy(Card::suit))
 
     val straight = suits.values.map { isStraight(it) }
-        .firstOrNull()
+        .find { it != null }
     return if (straight != null)
         StraightFlush(straight.cards)
     else
