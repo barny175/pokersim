@@ -1,9 +1,7 @@
 package cz.barny.pokersim.engine.hands
 
-import cz.barny.pokersim.engine.Card
-import cz.barny.pokersim.engine.CommunityCards
-import cz.barny.pokersim.engine.Hand
-import cz.barny.pokersim.engine.Rank
+import cz.barny.pokersim.engine.*
+import java.util.stream.Collectors
 
 abstract class Result(val cards: List<Card>) {
     init {
@@ -22,5 +20,16 @@ fun allCards(
     allCards.addAll(communityCards.cards)
     allCards.add(hand.card1)
     allCards.add(hand.card2)
+    allCards.sortBy { it.rank.highestValue() }
     return allCards
+}
+
+
+fun groupBySuit(
+    communityCards: CommunityCards,
+    hand: Hand
+): Map<Suit, MutableList<Card>> {
+    val suits = allCards(communityCards, hand).stream()
+        .collect(Collectors.groupingBy(Card::suit))
+    return suits
 }

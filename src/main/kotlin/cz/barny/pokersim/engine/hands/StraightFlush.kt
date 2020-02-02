@@ -8,8 +8,7 @@ class StraightFlush(cards: List<Card>) : Result(cards) {
 }
 
 fun isStraightFlush(hand: Hand, communityCards: CommunityCards): StraightFlush? {
-    val suits = allCards(communityCards, hand).stream()
-        .collect(Collectors.groupingBy(Card::suit))
+    val suits = groupBySuit(communityCards, hand)
 
     val straight = suits.values.map { isStraight(it) }
         .find { it != null }

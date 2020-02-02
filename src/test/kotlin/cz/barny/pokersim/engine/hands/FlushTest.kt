@@ -1,6 +1,6 @@
-package cz.barny.pokersim.engine
+package cz.barny.pokersim.engine.hands
 
-import cz.barny.pokersim.engine.hands.isFlush
+import cz.barny.pokersim.engine.*
 import org.assertj.core.api.Assertions
 
 internal class FlushTest {
