@@ -5,6 +5,7 @@ import cz.barny.pokersim.engine.CommunityCards
 import cz.barny.pokersim.engine.Hand
 
 class FullHouse(cards: List<Card>) : Result(cards) {
+    override fun order(): Int = 6
 }
 
 fun isFullHouse(hand: Hand, communityCards: CommunityCards): FullHouse? {

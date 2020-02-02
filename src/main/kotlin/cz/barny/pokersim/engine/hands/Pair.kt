@@ -6,7 +6,7 @@ import cz.barny.pokersim.engine.Hand
 import java.util.stream.Collectors
 
 class Pair(cards: List<Card>) : Result(cards) {
-
+    override fun order(): Int = 1
 }
 
 fun isPair(hand: Hand, communityCards: CommunityCards): Pair? {

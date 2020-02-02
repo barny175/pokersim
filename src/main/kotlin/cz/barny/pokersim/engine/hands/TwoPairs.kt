@@ -5,7 +5,7 @@ import cz.barny.pokersim.engine.CommunityCards
 import cz.barny.pokersim.engine.Hand
 
 class TwoPairs(cards: List<Card>) : Result(cards) {
-
+    override fun order(): Int = 2
 }
 
 fun isTwoPairs(hand: Hand, communityCards: CommunityCards): TwoPairs? {

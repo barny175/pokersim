@@ -20,4 +20,20 @@ internal class HandComparatorTest {
         assertThat(best)
             .isInstanceOf(Flush::class.java)
     }
+
+    @org.junit.jupiter.api.Test
+    fun compare1() {
+        val communityCards: CommunityCards = CommunityCards(listOf(
+            Card(Rank.NINE, Suit.Club),
+            Card(Rank.FIVE, Suit.Club),
+            Card(Rank.EIGHT, Suit.Heart),
+            Card(Rank.EIGHT, Suit.Club),
+            Card(Rank.SIX, Suit.Club)
+        ))
+
+        val hand1: Hand = Hand(Card(Rank.TEN, Suit.Club), Card(Rank.FIVE, Suit.Diamond))
+        val hand2: Hand = Hand(Card(Rank.ACE, Suit.Club), Card(Rank.NINE, Suit.Heart))
+        val result = HandComparator(communityCards).compare(hand1, hand2)
+        assertThat(result).isEqualTo(1)
+    }
 }

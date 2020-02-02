@@ -4,7 +4,7 @@ import cz.barny.pokersim.engine.*
 import java.util.stream.Collectors
 
 class Flush(cards: List<Card>) : Result(cards) {
-
+    override fun order(): Int = 5
 }
 
 fun isFlush(hand: Hand, communityCards: CommunityCards): Flush? {

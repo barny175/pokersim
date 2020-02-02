@@ -4,7 +4,7 @@ import cz.barny.pokersim.engine.*
 import java.util.stream.Collectors
 
 class StraightFlush(cards: List<Card>) : Result(cards) {
-
+    override fun order(): Int = 8
 }
 
 fun isStraightFlush(hand: Hand, communityCards: CommunityCards): StraightFlush? {

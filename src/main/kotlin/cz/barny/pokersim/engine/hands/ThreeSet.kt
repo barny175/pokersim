@@ -5,6 +5,7 @@ import cz.barny.pokersim.engine.CommunityCards
 import cz.barny.pokersim.engine.Hand
 
 class ThreeSet(cards: List<Card>) : Result(cards) {
+    override fun order(): Int = 4
 }
 
 fun isThreeSet(hand: Hand, communityCards: CommunityCards): ThreeSet? {

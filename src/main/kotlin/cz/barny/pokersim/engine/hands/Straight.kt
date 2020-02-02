@@ -3,6 +3,7 @@ package cz.barny.pokersim.engine.hands
 import cz.barny.pokersim.engine.*
 
 class Straight(cards: List<Card>) : Result(cards) {
+    override fun order(): Int = 4
 }
 
 fun isStraight(hand: Hand, communityCards: CommunityCards): Straight? {
@@ -13,6 +14,7 @@ fun isStraight(hand: Hand, communityCards: CommunityCards): Straight? {
 fun isStraight(allCards: List<Card>): Straight? {
     val cards = allCards.flatMap { c -> c.rank.values().map { value -> Pair(value, c) } }
         .sortedBy { p -> p.first }
+        .distinctBy { it.first }
 
     for (i in cards.size downTo 5) {
         val high = i - 1

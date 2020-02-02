@@ -10,6 +10,8 @@ abstract class Result(val cards: List<Card>) {
     }
 
     fun getHighestCard(): Rank = cards[cards.size - 1].rank
+
+    abstract fun order(): Int
 }
 
 fun allCards(
