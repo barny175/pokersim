@@ -6,7 +6,7 @@ import java.util.stream.Collectors
 abstract class Result(val cards: List<Card>) {
     init {
         if (cards.size != 5)
-            throw IllegalArgumentException("There must be 5 cards.")
+            throw IllegalArgumentException("There must be exactly 5 cards. Found " + cards.size)
     }
 
     fun getHighestCard(): Rank = cards[cards.size - 1].rank
@@ -32,4 +32,20 @@ fun groupBySuit(
     val suits = allCards(communityCards, hand).stream()
         .collect(Collectors.groupingBy(Card::suit))
     return suits
+}
+
+fun resultCards(
+    allCards: MutableList<Card>,
+    vararg twoSets: MutableList<Card>?
+): MutableList<Card> {
+    val res = mutableListOf<Card>()
+    var rest = allCards
+    twoSets.forEach { twoSet ->
+        res.addAll(twoSet!!)
+        rest.removeAll(twoSet)
+    }
+    rest.sortBy { it.rank }
+    val complete = 5 - res.size
+    res.addAll(rest.takeLast(complete))
+    return res
 }

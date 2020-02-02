@@ -17,10 +17,6 @@ fun isFullHouse(hand: Hand, communityCards: CommunityCards): FullHouse? {
     val threeSet = ranks.findLast { it.size >= 3 }
     val twoSet = ranks.findLast { it.size == 2 }
 
-    val res = mutableListOf<Card>()
-    res.addAll(twoSet!!)
-    res.addAll(threeSet!!)
-    allCards.removeAll(twoSet)
-    allCards.removeAll(threeSet)
+    val res = resultCards(allCards, twoSet, threeSet)
     return FullHouse(res)
 }

@@ -4,18 +4,19 @@ import cz.barny.pokersim.engine.Card
 import cz.barny.pokersim.engine.CommunityCards
 import cz.barny.pokersim.engine.Hand
 
-class ThreeSet(cards: List<Card>) : Result(cards) {
+class FourSet(cards: List<Card>) : Result(cards) {
+
 }
 
-fun isThreeSet(hand: Hand, communityCards: CommunityCards): ThreeSet? {
+fun isFourSet(hand: Hand, communityCards: CommunityCards): ThreeSet? {
     val allCards = allCards(communityCards, hand)
     val ranks = getSets(allCards)
-        .filter { it.size >= 3 }
+        .filter { it.size >= 4 }
 
     if (ranks.isEmpty())
         return null
 
-    val threeset = ranks.last()
-    val res = resultCards(allCards, threeset)
+    val fourSet = ranks.last()
+    val res = resultCards(allCards, fourSet)
     return ThreeSet(res)
 }
