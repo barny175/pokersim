@@ -4,28 +4,28 @@ import cz.barny.pokersim.engine.*
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 
-internal class FourSetKtTest {
+internal class HighCardKtTest {
 
     @org.junit.jupiter.api.Test
     fun fourSet() {
         val communityCards: CommunityCards = CommunityCards(listOf(
-            Card(Rank.ACE, Suit.Club),
+            Card(Rank.ACE, Suit.Spade),
             Card(Rank.TEN, Suit.Club),
             Card(Rank.THREE, Suit.Diamond),
-            Card(Rank.THREE, Suit.Club),
+            Card(Rank.TWO, Suit.Heart),
             Card(Rank.QUEEN, Suit.Club)
         ))
 
-        val hand: Hand = Hand(Card(Rank.THREE, Suit.Diamond), Card(Rank.THREE, Suit.Spade))
+        val hand: Hand = Hand(Card(Rank.FIVE, Suit.Diamond), Card(Rank.NINE, Suit.Spade))
 
-        val result = isFourSet(hand, communityCards)
+        val result = isHighCard(hand, communityCards)
         Assertions.assertThat(result?.cards)
             .containsExactlyInAnyOrder(
-                Card(Rank.THREE, Suit.Club),
-                Card(Rank.THREE, Suit.Spade),
-                Card(Rank.THREE, Suit.Diamond),
-                Card(Rank.THREE, Suit.Diamond),
-                Card(Rank.ACE, Suit.Club)
+                Card(Rank.ACE, Suit.Spade),
+                Card(Rank.QUEEN, Suit.Club),
+                Card(Rank.TEN, Suit.Club),
+                Card(Rank.NINE, Suit.Spade),
+                Card(Rank.FIVE, Suit.Diamond)
             )
     }
 }
