@@ -11,11 +11,7 @@ class Pair(cards: List<Card>) : Result(cards) {
 
 fun isPair(hand: Hand, communityCards: CommunityCards): Pair? {
     val allCards = allCards(communityCards, hand)
-    val ranks = allCards.stream()
-        .collect(Collectors.groupingBy(Card::rank))
-        .filter { it.value.size >= 2 }
-        .map { it.value }
-        .sortedBy { it.first().rank.highestValue() }
+    val ranks = getSets(allCards)
     if (ranks.isEmpty())
         null
 
@@ -27,4 +23,13 @@ fun isPair(hand: Hand, communityCards: CommunityCards): Pair? {
     res.addAll(highestPair.take(2))
     res.addAll(allCards.reversed().take(3))
     return Pair(res)
+}
+
+fun getSets(allCards: MutableList<Card>): List<MutableList<Card>> {
+    val ranks = allCards.stream()
+        .collect(Collectors.groupingBy(Card::rank))
+        .filter { it.value.size >= 2 }
+        .map { it.value }
+        .sortedBy { it.first().rank.highestValue() }
+    return ranks
 }
