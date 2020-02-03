@@ -38,11 +38,11 @@ fun groupBySuit(
 
 fun resultCards(
     allCards: MutableList<Card>,
-    vararg twoSets: MutableList<Card>?
+    vararg sets: List<Card>?
 ): MutableList<Card> {
     val res = mutableListOf<Card>()
     var rest = allCards
-    twoSets.forEach { twoSet ->
+    sets.forEach { twoSet ->
         res.addAll(twoSet!!)
         rest.removeAll(twoSet)
     }

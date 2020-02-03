@@ -12,12 +12,20 @@ fun isFullHouse(hand: Hand, communityCards: CommunityCards): FullHouse? {
     val allCards = allCards(communityCards, hand)
     val ranks = getSets(allCards)
 
-    if (ranks.size <= 2)
+    if (ranks.size < 2)
         null
 
     val threeSet = ranks.findLast { it.size >= 3 }
-    val twoSet = ranks.findLast { it.size == 2 }
+    if (threeSet == null) {
+        return null
+    }
+    val withouThreeSet = ranks.filter { it != threeSet }
 
-    val res = resultCards(allCards, twoSet, threeSet)
+    val twoSet = withouThreeSet.findLast { it.size >= 2 }
+    if  (twoSet == null) {
+        return null
+    }
+
+    val res = resultCards(allCards, twoSet.take(2), threeSet)
     return FullHouse(res)
 }
