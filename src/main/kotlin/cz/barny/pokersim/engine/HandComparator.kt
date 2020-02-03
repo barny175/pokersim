@@ -25,7 +25,12 @@ fun pickBest(hand: Hand, communityCards: CommunityCards): Result {
         return result
     }
 
-    result = isStraight(hand, communityCards)
+    result = isFourSet(hand, communityCards)
+    if (result != null) {
+        return result
+    }
+
+    result = isFullHouse(hand, communityCards)
     if (result != null) {
         return result
     }
@@ -34,5 +39,26 @@ fun pickBest(hand: Hand, communityCards: CommunityCards): Result {
     if (result != null) {
         return result
     }
+
+    result = isStraight(hand, communityCards)
+    if (result != null) {
+        return result
+    }
+
+    result = isThreeSet(hand, communityCards)
+    if (result != null) {
+        return result
+    }
+
+    result = isTwoPairs(hand, communityCards)
+    if (result != null) {
+        return result
+    }
+
+    val pair = isPair(hand, communityCards)
+    if (result != null) {
+        return result
+    }
+
     return isHighCard(hand, communityCards)
 }
