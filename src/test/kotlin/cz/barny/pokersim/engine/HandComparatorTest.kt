@@ -32,10 +32,10 @@ internal class HandComparatorTest {
             Card(Rank.SIX, Suit.Club)
         ))
 
-        val hand1: Hand = Hand(Card(Rank.TEN, Suit.Club), Card(Rank.FIVE, Suit.Diamond))
-        val hand2: Hand = Hand(Card(Rank.ACE, Suit.Club), Card(Rank.NINE, Suit.Heart))
+        val hand1: Hand = Hand(Card(Rank.TEN, Suit.Club), Card(Rank.FIVE, Suit.Diamond)) // FLush
+        val hand2: Hand = Hand(Card(Rank.ACE, Suit.Club), Card(Rank.NINE, Suit.Heart)) // Flush
         val result = HandComparator(communityCards).compare(hand1, hand2)
-        assertThat(result).isEqualTo(1)
+        assertThat(result).isEqualTo(-1)
     }
 
     @org.junit.jupiter.api.Test
@@ -48,9 +48,26 @@ internal class HandComparatorTest {
             Card(Rank.QUEEN, Suit.Heart)
         ))
 
-        val hand1: Hand = Hand(Card(Rank.QUEEN, Suit.Spade), Card(Rank.JACK, Suit.Diamond))
-        val hand2: Hand = Hand(Card(Rank.ACE, Suit.Club), Card(Rank.FOUR, Suit.Heart))
+        val hand1: Hand = Hand(Card(Rank.QUEEN, Suit.Spade), Card(Rank.JACK, Suit.Diamond)) // fullhouse
+        val hand2: Hand = Hand(Card(Rank.ACE, Suit.Club), Card(Rank.FOUR, Suit.Heart)) // two pairs
         val result = HandComparator(communityCards).compare(hand1, hand2)
+        assertThat(result).isEqualTo(1)
+    }
+
+    @org.junit.jupiter.api.Test
+    fun compare3() {
+        val communityCards: CommunityCards = CommunityCards(listOf(
+            Card(Rank.TEN, Suit.Club),
+            Card(Rank.QUEEN, Suit.Diamond),
+            Card(Rank.SIX, Suit.Spade),
+            Card(Rank.NINE, Suit.Heart),
+            Card(Rank.FOUR, Suit.Diamond)
+        ))
+
+        val hand1: Hand = Hand(Card(Rank.QUEEN, Suit.Heart), Card(Rank.FOUR, Suit.Heart)) // two pairs
+        val hand2: Hand = Hand(Card(Rank.JACK, Suit.Club), Card(Rank.KING, Suit.Diamond)) //straight
+        val result = HandComparator(communityCards)
+            .compare(hand1, hand2)
         assertThat(result).isEqualTo(-1)
     }
 }
